@@ -55,37 +55,38 @@ DATABASES = {
         conn_max_age=600)}
 
 
-TIME_ZONE = 'America/Chicago'
-LANGUAGE_CODE = 'en'
+TIME_ZONE = 'America/Sao_Paulo'
+LANGUAGE_CODE = 'pt-br'
 LANGUAGES = [
-    ('ar', _('Arabic')),
-    ('bg', _('Bulgarian')),
-    ('bn', _('Bengali')),
-    ('cs', _('Czech')),
-    ('da', _('Danish')),
-    ('de', _('German')),
+    # ('ar', _('Arabic')),
+    # ('bg', _('Bulgarian')),
+    # ('bn', _('Bengali')),
+    # ('cs', _('Czech')),
+    # ('da', _('Danish')),
+    # ('de', _('German')),
     ('en', _('English')),
-    ('es', _('Spanish')),
-    ('fa', _('Persian')),
-    ('fr', _('French')),
-    ('hu', _('Hungarian')),
-    ('it', _('Italian')),
-    ('ja', _('Japanese')),
-    ('ko', _('Korean')),
-    ('mn', _('Mongolian')),
-    ('nb', _('Norwegian')),
-    ('nl', _('Dutch')),
-    ('pl', _('Polish')),
+    # ('es', _('Spanish')),
+    # ('fa', _('Persian')),
+    # ('fr', _('French')),
+    # ('hu', _('Hungarian')),
+    # ('it', _('Italian')),
+    # ('ja', _('Japanese')),
+    # ('ko', _('Korean')),
+    # ('mn', _('Mongolian')),
+    # ('nb', _('Norwegian')),
+    # ('nl', _('Dutch')),
+    # ('pl', _('Polish')),
     ('pt-br', _('Brazilian Portuguese')),
-    ('ro', _('Romanian')),
-    ('ru', _('Russian')),
-    ('sk', _('Slovak')),
-    ('sv', _('Swedish')),
-    ('tr', _('Turkish')),
-    ('uk', _('Ukrainian')),
-    ('vi', _('Vietnamese')),
-    ('zh-hans', _('Simplified Chinese')),
-    ('zh-hant', _('Traditional Chinese'))]
+    # ('ro', _('Romanian')),
+    # ('ru', _('Russian')),
+    # ('sk', _('Slovak')),
+    # ('sv', _('Swedish')),
+    # ('tr', _('Turkish')),
+    # ('uk', _('Ukrainian')),
+    # ('vi', _('Vietnamese')),
+    # ('zh-hans', _('Simplified Chinese')),
+    # ('zh-hant', _('Traditional Chinese')),
+    ]
 LOCALE_PATHS = [os.path.join(PROJECT_ROOT, 'locale')]
 USE_I18N = True
 USE_L10N = True
@@ -313,11 +314,11 @@ AUTH_USER_MODEL = 'account.User'
 
 LOGIN_URL = '/account/login/'
 
-DEFAULT_COUNTRY = os.environ.get('DEFAULT_COUNTRY', 'US')
+DEFAULT_COUNTRY = os.environ.get('DEFAULT_COUNTRY', 'BR')
 DEFAULT_CURRENCY = os.environ.get('DEFAULT_CURRENCY', 'USD')
 DEFAULT_DECIMAL_PLACES = get_currency_fraction(DEFAULT_CURRENCY)
 DEFAULT_MAX_DIGITS = 12
-AVAILABLE_CURRENCIES = [DEFAULT_CURRENCY]
+AVAILABLE_CURRENCIES = [DEFAULT_CURRENCY, 'BRL']
 COUNTRIES_OVERRIDE = {
     'EU': pgettext_lazy(
         'Name of political and economical union of european countries',

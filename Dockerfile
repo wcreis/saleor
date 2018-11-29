@@ -3,7 +3,7 @@ FROM python:3.6 as build-python
 
 RUN \
   apt-get -y update && \
-  apt-get install -y gettext && \
+  apt-get install -y gettext-base && \
   # Cleanup apt cache
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
@@ -54,7 +54,6 @@ COPY --from=build-nodejs /app/saleor/static /app/saleor/static
 COPY --from=build-nodejs /app/webpack-bundle.json /app/
 COPY --from=build-nodejs /app/templates /app/templates
 WORKDIR /app
-
 
 RUN SECRET_KEY=dummy \
     STATIC_URL=${STATIC_URL} \

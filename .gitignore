@@ -19,6 +19,7 @@
 *.log
 *.pot
 *.pyc
+*.po-old
 local_settings.py
 __pycache__/
 build/
@@ -34,3 +35,4 @@ dist/
 webpack-bundle.json
 /templates/templated_email/compiled/*
 !/templates/templated_email/compiled/.gitkeep
+/env/
