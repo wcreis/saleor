@@ -83,6 +83,9 @@ class Payment(models.Model):
     cc_exp_year = models.PositiveIntegerField(
         validators=[MinValueValidator(1000)], null=True, blank=True)
 
+    class Meta:
+        ordering = ['pk']
+
     def __repr__(self):
         return 'Payment(gateway=%s, is_active=%s, created=%s, charge_status=%s)' % (
             self.gateway, self.is_active, self.created, self.charge_status)
@@ -141,6 +144,9 @@ class Payment(models.Model):
             self.charge_status == ChargeStatus.CHARGED
             and self.get_total() > self.get_captured_amount())
         return self.is_active and not_charged or not_fully_charged
+
+    def can_charge(self):
+        return self.can_capture()
 
     def can_void(self):
         return (

@@ -1,12 +1,16 @@
-import { withStyles } from "@material-ui/core/styles";
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles
+} from "@material-ui/core/styles";
 import * as React from "react";
 
+import { ConfirmButtonTransitionState } from "../../../components/ConfirmButton/ConfirmButton";
 import Container from "../../../components/Container";
 import Form from "../../../components/Form";
 import PageHeader from "../../../components/PageHeader";
-import SaveButtonBar, {
-  SaveButtonBarState
-} from "../../../components/SaveButtonBar/SaveButtonBar";
+import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 import SeoForm from "../../../components/SeoForm";
 import i18n from "../../../i18n";
 import { UserError } from "../../../types";
@@ -23,7 +27,28 @@ import ProductPricing from "../ProductPricing";
 import ProductStock from "../ProductStock";
 import ProductVariants from "../ProductVariants";
 
-interface ProductUpdateProps {
+const styles = (theme: Theme) =>
+  createStyles({
+    cardContainer: {
+      marginTop: theme.spacing.unit * 2,
+      [theme.breakpoints.down("sm")]: {
+        marginTop: theme.spacing.unit
+      }
+    },
+    root: {
+      display: "grid",
+      gridGap: theme.spacing.unit * 2 + "px",
+      gridTemplateColumns: "9fr 4fr",
+      marginTop: theme.spacing.unit * 2,
+      [theme.breakpoints.down("sm")]: {
+        gridGap: theme.spacing.unit + "px",
+        gridTemplateColumns: "1fr",
+        marginTop: theme.spacing.unit
+      }
+    }
+  });
+
+interface ProductUpdateProps extends WithStyles<typeof styles> {
   errors: UserError[];
   placeholderImage: string;
   collections?: Array<{
@@ -50,7 +75,7 @@ interface ProductUpdateProps {
   images?: ProductDetails_product_images[];
   product?: ProductDetails_product;
   header: string;
-  saveButtonBarState?: SaveButtonBarState;
+  saveButtonBarState: ConfirmButtonTransitionState;
   onVariantShow: (id: string) => () => void;
   onImageDelete: (id: string) => () => void;
   onAttributesEdit: () => void;
@@ -65,27 +90,7 @@ interface ProductUpdateProps {
   onVariantAdd?();
 }
 
-const decorate = withStyles(theme => ({
-  cardContainer: {
-    marginTop: theme.spacing.unit * 2,
-    [theme.breakpoints.down("sm")]: {
-      marginTop: theme.spacing.unit
-    }
-  },
-  root: {
-    display: "grid",
-    gridGap: theme.spacing.unit * 2 + "px",
-    gridTemplateColumns: "9fr 4fr",
-    marginTop: theme.spacing.unit * 2,
-    [theme.breakpoints.down("sm")]: {
-      gridGap: theme.spacing.unit + "px",
-      gridTemplateColumns: "1fr",
-      marginTop: theme.spacing.unit
-    }
-  }
-}));
-
-export const ProductUpdate = decorate<ProductUpdateProps>(
+export const ProductUpdate = withStyles(styles, { name: "ProductUpdate" })(
   ({
     classes,
     disabled,
@@ -110,7 +115,7 @@ export const ProductUpdate = decorate<ProductUpdateProps>(
     onSubmit,
     onVariantAdd,
     onVariantShow
-  }) => {
+  }: ProductUpdateProps) => {
     const initialData = product
       ? {
           attributes: product.attributes
@@ -186,12 +191,7 @@ export const ProductUpdate = decorate<ProductUpdateProps>(
       product && product.productType && product.productType.hasVariants;
 
     return (
-      <Form
-        onSubmit={onSubmit}
-        errors={userErrors}
-        initial={initialData}
-        key={product ? JSON.stringify(product) : "loading"}
-      >
+      <Form onSubmit={onSubmit} errors={userErrors} initial={initialData}>
         {({ change, data, errors, hasChanged, submit }) => (
           <>
             <Container width="md">

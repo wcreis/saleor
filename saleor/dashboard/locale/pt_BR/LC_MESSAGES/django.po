@@ -14,6 +14,7 @@
 # T Burd <taysonandrey@gmail.com>, 2018
 # Thiago reis <thiagoth.reis@gmail.com>, 2018
 # Roberto Junior <roberto.junior.hbl@gmail.com>, 2018
+# wcreis <wesley.c.reis@gmail.com>, 2018
 # Murilo Gonçalves Pereira <murilogp12@gmail.com>, 2018
 # 
 #, fuzzy
@@ -2047,8 +2048,9 @@ msgid ""
 "Could not fetch tax rates. Make sure you have supplied a valid API Access "
 "Key.<br/>Check the server logs for more information about this error."
 msgstr ""
-"Não foi possível buscar taxas de impostos. Certifique-se de ter fornecido uma chave de acesso de API válida.\n"
-"Confira os logs do servidor para obter mais informações sobre esse erro."
+"Não foi possível buscar taxas de impostos. Certifique-se de ter fornecido "
+"uma chave de acesso de API válida.<br/>Confira os logs do servidor para "
+"obter mais informações sobre esse erro."
 
 #: saleor/dashboard/templatetags/chips.py:66
 msgctxt "Possible values of boolean filter"
